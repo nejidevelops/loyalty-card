@@ -5,6 +5,7 @@ import FreeFoodQRCode from "./FreeFoodQRCode";
 import RedeemPage from "./RedeemPage";
 import ConfirmVisit from "./confirmVisit";
 import RewardClaimed from "./RewardClaimed";
+import QuestList from "./QuestList";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/redeem" element={<RedeemPage />} />
       <Route path="/confirm-visit" element={<ConfirmVisit />} />
       <Route path="/reward-claimed" element={<RewardClaimed />} />
+      <Route path="/quests" element={<QuestList />} />
     </Routes>
   );
 }
