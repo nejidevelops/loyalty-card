@@ -15,15 +15,30 @@ export default function ConfirmVisit() {
     }
 
     const localKey = `visit_count_${uuid}`;
+    const levelKey = `loyalty_level_${uuid}`;
+    const questKey = `unlocked_quest_${uuid}`;
+
     const stored = parseInt(localStorage.getItem(localKey) || "0", 10);
     const newCount = Math.min(stored + 1, VISIT_THRESHOLD);
+
     localStorage.setItem(localKey, newCount.toString());
 
     if (newCount >= VISIT_THRESHOLD) {
+      // Reset visit count
+      localStorage.setItem(localKey, "0");
+
+      // Increase user level
+      const currentLevel = parseInt(localStorage.getItem(levelKey) || "1", 10);
+      localStorage.setItem(levelKey, (currentLevel + 1).toString());
+
+      // Unlock next quest (simulate)
+      localStorage.setItem(questKey, "New Quest Unlocked");
+
       setMessage("🎉 You've reached your reward!");
+
       setTimeout(() => {
-        navigate("/loyalty"); // Or `/redeem` if you prefer
-      }, 1500); // Delay for user to read the message
+        navigate("/reward-claimed");
+      }, 1500);
     } else {
       setMessage(`✅ Visit confirmed! Visit count is now ${newCount}`);
     }
